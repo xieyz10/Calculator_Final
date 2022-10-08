@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var currentResult:Double = 0
     var hasClickedOperatorButton = false
     var hasFinishedInput = false
+    var hasClickedEqualButton = false
     
     @IBAction func digitButton_Pressed(_ sender: UIButton) {
         if hasClickedOperatorButton && hasFinishedInput {
@@ -38,6 +39,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operatorButton_Pressed(_ sender: UIButton) {
+        if(hasClickedEqualButton == true) {return}
         if sender.titleLabel!.text! == "=" && digitStack.count != 0 {
             equalButton_Pressed()
             return
@@ -117,6 +119,7 @@ class ViewController: UIViewController {
         if hasFinishedInput == false {
             hasFinishedInput = true
         }
+        hasClickedEqualButton = true
     }
     
     @IBAction func deleteButton_Pressed(_ sender: UIButton) {
@@ -144,6 +147,7 @@ class ViewController: UIViewController {
         currentResult = 0
         hasClickedOperatorButton = false
         hasFinishedInput = false
+        hasClickedEqualButton = false
     }
     
     func handleChangeOperator(sender:UIButton)->Bool{
